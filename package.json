@@ -1,0 +1,22 @@
+{
+  "name": "typescript-axios-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "generate": "openapi-generator-cli generate -g typescript-axios -o ./src -i ./v1.json --additional-properties=useSingleRequestParameter=true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johanbv/typescript-axios-client.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johanbv/typescript-axios-client/issues"
+  },
+  "homepage": "https://github.com/johanbv/typescript-axios-client#readme",
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.6.0"
+  }
+}

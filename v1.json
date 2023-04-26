@@ -1,0 +1,92 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Example API",
+      "version": "1.0.0"
+    },
+    "components": {
+      "schemas": {
+        "Pet": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "$type": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "$type"
+          ],
+          "discriminator": {
+            "propertyName": "$type",
+            "mapping": {
+              "dog": "#/components/schemas/Dog",
+              "cat": "#/components/schemas/Cat"
+            }
+          }
+        },
+        "Dog": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Pet"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "breed": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "breed"
+              ]
+            }
+          ]
+        },
+        "Cat": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Pet"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "clawed": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "clawed"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "paths": {
+      "/pets": {
+        "get": {
+          "summary": "Get a list of pets",
+          "responses": {
+            "200": {
+              "description": "A list of pets",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Pet"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
